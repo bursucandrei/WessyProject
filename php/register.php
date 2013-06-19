@@ -1,4 +1,3 @@
-
 <?php
 include 'functions.php';
 $dbh="fenrir";
@@ -9,17 +8,17 @@ $conexiune=mysql_connect($dbh,$dbu,$dbp);
 
 if(!$conexiune)
 {
-	die("A crapat[conexiune]!".mysql_error());
+	die("A murit[conexiune]!".mysql_error());
 }
 if(!mysql_select_db($dbn,$conexiune))
 {
-	die("A crapat[select_db]!".mysql_error());
+	die("A murit[select_db]!".mysql_error());
 }
 
-if(isset($_POST['emailR'], $_POST['p'] , $_POST['usernameR'], $_POST['ageR'] , $_POST['websiteR'])) { 
+if(isset($_POST['emailR'], $_POST['passwordR'] , $_POST['usernameR'], $_POST['ageR'] , $_POST['websiteR'])) { 
    $username = $_POST['usernameR'];
    
-   $password = $_POST['p']; // The hashed password.
+   $password = $_POST['passwordR'];
    
    $email=$_POST['emailR'];
    
@@ -41,7 +40,6 @@ if (!$result)
 else
     {
 	echo 'Register succes!!';
-	header('Location: registerSucces.html');
 	}
    }else { 
    // The correct POST variables were not sent to this page.

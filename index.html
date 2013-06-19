@@ -40,19 +40,19 @@
     				<div class="span4 offset4" id="sidebar">
     					<div class="well">
 
-    						<form action="php/process_login.php" method="post">
+    						<form method="post" id="loghinform" action="php/process_login.php">
     							<fieldset>
     								<legend>Login</legend>
     									<input type="text" class="input-block-level" placeholder="Username" name="email">
-    									<input type="password" class="input-block-level" placeholder="Password" name="password" id="password">
-    									<label class="checkbox">
-         								<input type="checkbox" value="remember-me"> Remember me
-        								</label>
+    									<input type="password" class="input-block-level" placeholder="Password" name="password">
         								<div class="pull-right">
-    									<input type="submit" class="btn btn-primary" value="Login" onclick="formhash(this.form, this.form.password);">
+    									<button type="submit" class="btn btn-success">Loghin</button>
     									<input type="button" class="btn btn-primary" value="Register" href="#register" data-toggle="modal">
+										
     								</div>
+                                    
     							</fieldset>
+								
     						</form>
     					</div>
     				</div>
@@ -68,9 +68,9 @@
     				<h3 id="modalLabel">Register</h3>
     		</div>
 
-    		<div class="modal-body" onload="process()">
-    			<form action="register.php" method="post">
-    				<div class="controls controls-group warning">
+    		<div class="modal-body">
+    			<form method="post" id="registerform">
+    				<div class="controls control-group warning">
     					<input type="text" class="span5" placeholder="Username" id="inputwarning" name="usernameR">
     					<input type="email" class="span5" placeholder="Email" id="inputwarning" name="emailR">
     					<input type="password" class="span5" placeholder="Password" id="inputwarning" name="passwordR">
@@ -78,15 +78,15 @@
     					<input type="url" class="span5" placeholder="Personal Website" id="inputwarning" name="websiteR">
 
     				</div>
-
-
+                     <div id="rezultat">
+					 </div>
     			</form>
 
     		</div>
 
     		<div class="modal-footer">
     			<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
-    			<button class="btn btn-success" type="submit" onclick="formhash(this.form, this.form.password);">Register</button>
+    			<button class="btn btn-success" type="submit" onclick="formRegister();">Register</button>
 
     		</div>
 
@@ -95,11 +95,12 @@
 
     	</div>
 
-    		<script src="http://code.jquery.com/jquery.js"></script>
+    	    <script src="http://code.jquery.com/jquery.js"></script>
 			<script src="js/bootstrap.min.js"></script>
 			<script src="js/sha512.js"></script>
 			<script src="js/forms.js"></script>
 			<script src="js/interogare.js"></script>
+			<script src="js/wessy.js"></script>
     	</body>
 </html>
 
