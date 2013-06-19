@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </head>
+
+    	<body>
+    		<div class="container">
+    			<header class ="row">
+    				<div class="span12">
+    				<nav class="navbar">
+    					<a href="#" class ="brand">Wessy</a>
+    					<div class="navbar-inner">
+    						<ul class="nav">
+    							<li class="divider-vertical"></li>
+    							<li><a href="#">Home</a></li>
+    							<li class="divider-vertical"></li>
+    							<li><a href="#">Blog</a></li>
+    							<li class="divider-vertical"></li>
+    							<li><a href="#">About</a></li>
+    							<li class="divider-vertical"></li>
+    							<li><a href="#">Contact</a></li>
+    							<li class="divider-vertical"></li>
+
+    					    </ul>
+    					</div>
+
+                     </nav>
+
+    				</div>
+
+    			</header> 
+
+
+
+    			<div class="row" id="main-content">
+    				<div class="span4 offset4" id="sidebar">
+    					<div class="well">
+
+    						<form action="php/process_login.php" method="post">
+    							<fieldset>
+    								<legend>Login</legend>
+    									<input type="text" class="input-block-level" placeholder="Username" name="email">
+    									<input type="password" class="input-block-level" placeholder="Password" name="password" id="password">
+    									<label class="checkbox">
+         								<input type="checkbox" value="remember-me"> Remember me
+        								</label>
+        								<div class="pull-right">
+    									<input type="submit" class="btn btn-primary" value="Login" onclick="formhash(this.form, this.form.password);">
+    									<input type="button" class="btn btn-primary" value="Register" href="#register" data-toggle="modal">
+    								</div>
+    							</fieldset>
+    						</form>
+    					</div>
+    				</div>
+    			<div class="span8"></div>
+    			</div>
+    			<footer class="row"></footer>
+    		</div><!--end of container-->
+
+    	<div id="register" class="modal hide fade" aria-labelledby="modalLabel" aria-hidden="true">
+
+    		<div class="modal-header">
+    			<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+    				<h3 id="modalLabel">Register</h3>
+    		</div>
+
+    		<div class="modal-body" onload="process()">
+    			<form action="register.php" method="post">
+    				<div class="controls controls-group warning">
+    					<input type="text" class="span5" placeholder="Username" id="inputwarning" name="usernameR">
+    					<input type="email" class="span5" placeholder="Email" id="inputwarning" name="emailR">
+    					<input type="password" class="span5" placeholder="Password" id="inputwarning" name="passwordR">
+    					<input type="number" class="span5" placeholder="Age" id="inputwarning" name="ageR">
+    					<input type="url" class="span5" placeholder="Personal Website" id="inputwarning" name="websiteR">
+
+    				</div>
+
+
+    			</form>
+
+    		</div>
+
+    		<div class="modal-footer">
+    			<button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    			<button class="btn btn-success" type="submit" onclick="formhash(this.form, this.form.password);">Register</button>
+
+    		</div>
+
+
+
+
+    	</div>
+
+    		<script src="http://code.jquery.com/jquery.js"></script>
+			<script src="js/bootstrap.min.js"></script>
+			<script src="js/sha512.js"></script>
+			<script src="js/forms.js"></script>
+			<script src="js/interogare.js"></script>
+    	</body>
+</html>
+
