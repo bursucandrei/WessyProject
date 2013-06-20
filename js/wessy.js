@@ -12,16 +12,15 @@ $.ajax({
 
 }
 
-function formLoghin()
+function hideDiv()
 {
-$.ajax({
-			type:'post',
-			url:'php/process_login.php',
-			data:$('#loghinform').serialize(),
-			success:function(response){
-										$('#loghinresult').text(response);
-										}
+$('#hideImg').remove();
+$('#btnClose').remove();
+$('#btnPlay').replaceWith($('#btnConfirm'));
+$('#btnDetails').replaceWith($('#btnHint'));
+$('#btnCustomize').replaceWith($('#btnSkip'));
+$('#btnFb').replaceWith($('#btnFacebook'));
+$('#btnQu').replaceWith($('#btnQuit'));
 
-		});
 
 }
