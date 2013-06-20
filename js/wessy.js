@@ -16,7 +16,8 @@ $.ajax({
 
 function hideDiv()
 {
-randomnr=Math.floor(Math.random()*26)
+randomnr=Math.floor(Math.random()*25);
+randomnr=1+randomnr;
 img = new Image(); // width, height values are optional params 
 img.src = 'img/gameimg/pic'+randomnr+'.jpg';
 img.alt='Personajul de ghicit';
@@ -34,11 +35,18 @@ $('#btnQu').replaceWith($('#btnQuit'));
 
 function onclick_Confirm()
 {
-randomnr=Math.floor(Math.random()*26)
+randomnr=Math.floor(Math.random()*25);
+randomnr=1+randomnr;
 var imgNew = new Image(); // width, height values are optional params 
 imgNew.src = 'img/gameimg/pic'+randomnr+'.jpg';
 imgNew.alt='Personajul de ghicit';
 imgNew.className='img-polaroid';
 $('#divNewImg').replaceWith(imgNew);
 imgNew.id='divNewImg';
+}
+
+function onclick_Hint()
+{
+
+
 }
