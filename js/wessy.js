@@ -4,6 +4,8 @@ var randNr=0;
 var optiune=null;
 var corect=null;
 var countS=0;
+var countQ=8;
+var countSkip=0;
 function formRegister()
 {
 $.ajax({
@@ -30,15 +32,31 @@ img.id='divNewImg';
 $('#alertDiv').text('Which one of this people is in this picture?');
 $('#hideImg').replaceWith(img);
 $('#btnClose').remove();
-$('#btnPlay').replaceWith($('#btnConfirm'));
-$('#btnDetails').replaceWith($('#btnHint'));
-$('#btnCustomize').replaceWith($('#btnSkip'));
-$('#btnFb').replaceWith($('#btnFacebook'));
-$('#btnQu').replaceWith($('#btnQuit'));
-var elem = document.getElementById('btnRadio');
-$(elem).show();
+var left='<button type="button" class="btn btn-inverse" id="btnLeft" onclick="onclick_Left();"></button>';
+var mid='<button type="button" class="btn btn-inverse" id="btnMiddle" onclick="onclick_Middle();"></button>';
+var right='<button type="button" class="btn btn-inverse" id="btnRight" onclick="onclick_Right();"></button>';
+var conf='<button type="submit" class="btn btn-primary" id="btnConfirm" onclick="onclick_Confirm();">Confirm</button>';
+var hint='<button type="submit" class="btn btn-primary" id="btnHint" onclick="onclick_Hint();">Hint</button>';
+var skip='<button type="submit" class="btn btn-primary" id="btnSkip">Skip</button>';
+var fb='<button type="submit" class="btn btn-primary" id="btnFacebook">Facebook</button>';
+var qu='<button type="submit" class="btn btn-primary" id="btnQuit" onclick="onclickQuit();">Quit</button>';
+
+$('#fl').replaceWith(left);
+$('#fr').replaceWith(right);
+$('#fm').replaceWith(mid);
 
 
+
+//$('#btnPlay').replaceWith($('#btnConfirm'));
+$('#btnPlay').replaceWith(conf);
+
+//$('#btnDetails').replaceWith($('#btnHint'));
+$('#btnDetails').replaceWith(hint);
+
+//$('#btnCustomize').replaceWith($('#btnSkip'));
+$('#btnCustomize').replaceWith(skip);
+$('#btnFb').replaceWith(fb);
+$('#btnQu').replaceWith(qu);
 
 $.ajax({
 			type:'post',
@@ -58,7 +76,9 @@ $.ajax({
 										}
 
 		});
-$('#score').text("Score:" + countS);
+$('#score').text("Score: " + countS);
+$('#skip').text("Skips left: " + countSkip);
+$('#question').text("Nr. of questions: " + countQ);
 }
 
 function shuffle(array) {
@@ -120,11 +140,18 @@ corect=corect.toString();
 		{
 		$('#corect').text("Correct");
 		countS=countS+1;
+		countQ=countQ-1;
 		$('#score').text("Score:" + countS);
+		$('#question').text("Nr. of questions: " + countQ);
 		}
 	else
+		{
 		$('#corect').text("Wrong");
+		countQ=countQ-1;
+		$('#question').text("Nr. of questions: " + countQ);
+		}
 
+		
 }
 
 
@@ -167,5 +194,37 @@ function onclick_Left()
 {
 op1=$('#btnLeft').val();
 $('#hint').text(op1);
+}
+
+function onclickQuit(){
+randomnr=0;
+randNr=0;
+optiune=null;
+corect=null;
+countS=0;
+countQ=8;
+countSkip=0;
+var imgNew = new Image(); // width, height values are optional params 
+imgNew.src = 'img/welcome.jpg';
+imgNew.alt='Personajul de ghicit';
+imgNew.id='hideImg';
+$(img).replaceWith($(imgNew));
+var play='<button type="submit" class="btn btn-primary" onclick="hideDiv();" id="btnPlay">Play</button>';
+var det='<button type="submit" class="btn btn-primary" id="btnDetails">Details</button>';
+var cust='<button type="submit" class="btn btn-primary" id="btnCustomize">Customize</button>';
+var fb='<button type="submit" id="btnFb" style="visibility: hidden"></button>';
+var qu='<button type="submit" id="btnQu" style="visibility: hidden"></button>';
+var fl='<div id="fl"></div>';
+var fr='<div id="fr"></div>';
+var fm='<div id="fm"></div>';
+$('#btnConfirm').replaceWith(play);
+$('#btnHint').replaceWith(det);
+$('#btnSkip').replaceWith(cust);
+$('#btnFacebook').replaceWith(fb);
+$('#btnQuit').replaceWith(qu);
+$('#alertDiv').text('Game stopped!To start press PLAY!');
+$('#btnLeft').replaceWith(fl);
+$('#btnMiddle').replaceWith(fm);
+$('#btnRight').replaceWith(fr);
 }
 
