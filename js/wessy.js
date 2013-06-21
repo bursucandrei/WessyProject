@@ -20,6 +20,19 @@ $.ajax({
 
 }
 
+function formLogin()
+{
+$.ajax({
+			type:'post',
+			url:'php/process_login.php',
+			data:$('#loginform').serialize(),
+			success:function(response){
+										$('#log').text(response);
+										}
+
+		});
+}
+
 function hideDiv()
 {
 randNr=Math.floor(Math.random()*25);
@@ -73,6 +86,17 @@ $.ajax({
 $('#score').text("Score: " + countS);
 $('#skip').text("Skips left: " + countSkip);
 $('#question').text("Nr. of questions: " + countQ);
+
+
+$.ajax({
+			type:'post',
+			url:'php/user.php',
+			success:function(response){
+										$('#usr').text("User: "+response);
+										}
+
+		});
+
 }
 
 function shuffle(array) {
@@ -150,7 +174,7 @@ corect=corect.toString();
 			$('#alertDiv').text("Game over!");
 			$('#btnRadio').remove();
 			var bscore='<button type="submit" class="btn btn-primary" onclick="bscore();" id="btnBscore">View best score</button>';
-			var myScor='<button type="submit" class="btn btn-primary" onclick="mscore();" id="btnMscore">View your scores</button>';
+			var myScor='<button type="submit" class="btn btn-primary" href="#mscore" data-toggle="modal" onclick="mscore();" id="btnMscore">View your scores</button>';
 			var clasament='<button type="submit" class="btn btn-primary" onclick="clasament();" id="btnClasament">Clasament</button>';
 			var restart='<button type="submit" class="btn btn-primary" onclick="restart();" id="btnRestart">Restart</button>';
 			$('#btnConfirm').replaceWith(bscore);
@@ -170,7 +194,42 @@ $(function() {
   }); 
 });
 
+function bscore()
+{
+$.ajax({
+			type:'post',
+			url:'php/bscore.php',
+			success:function(response){
+										$('#bsc').text("Best score for this game is:\n"+response);
+										}
 
+		});
+}
+
+function mscore()
+{
+
+}
+
+function clasament()
+{
+
+}
+
+function restart()
+{
+location.reload();
+}
+
+function btnExit()
+{
+$.ajax({
+			type:'post',
+			url:'php/logout.php'
+
+		});
+		self.location="index.html";
+}
 
 function onclick_Hint()
 {
@@ -238,3 +297,57 @@ $('#btnRight').replaceWith(fr);*/
 location.reload();
 }
 
+function generate_table() {
+
+
+    $.ajax({
+			type:'post',
+			url:'php/mscore.php',
+			data:"numar="+randNr,
+			success:function(response){
+									    var obj = JSON.parse(response);
+										var op = new Array();
+										op[0] = obj.numeC;
+										corect=obj.numeC
+										op[1] = obj.wrong1;
+										op[2] = obj.wrong2;
+										var newop=shuffle(op);
+										$('#btnLeft').text(newop[0]);
+										$('#btnMiddle').text(newop[1]);
+										$('#btnRight').text(newop[2]);
+										}
+
+		});
+  // get the reference for the body
+  var body = document.getElementsByTagName("table")[0];
+ 
+  // creates a <table> element and a <tbody> element
+  var tbl     = document.createElement("table");
+  var tblBody = document.createElement("tbody");
+ 
+  // creating all cells
+  for (var j = 0; j < 100; j++) {
+    // creates a table row
+    var row = document.createElement("tr");
+ 
+    for (var i = 0; i < 2; i++) {
+      // Create a <td> element and a text node, make the text
+      // node the contents of the <td>, and put the <td> at
+      // the end of the table row
+      var cell = document.createElement("td");
+      var cellText = document.createTextNode("cell is row "+j+", column "+i);
+      cell.appendChild(cellText);
+      row.appendChild(cell);
+    }
+ 
+    // add the row to the end of the table body
+    tblBody.appendChild(row);
+  }
+ 
+  // put the <tbody> in the <table>
+  tbl.appendChild(tblBody);
+  // appends <table> into <body>
+  body.appendChild(tbl);
+  // sets the border attribute of tbl to 2;
+  tbl.setAttribute("border", "2");
+}
