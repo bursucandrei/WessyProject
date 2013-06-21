@@ -183,6 +183,17 @@ corect=corect.toString();
 			$('#btnFacebook').replaceWith(restart);
 			$('#btnQuit').remove();
 			
+			$.ajax({
+			type:'post',
+			url:'php/score.php',
+			data:"scor="+countS,
+			success:function(response){
+									    $('#bsc').text(response);
+										}
+
+		});
+			
+			
 		}
 }
 
